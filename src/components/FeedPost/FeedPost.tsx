@@ -5,11 +5,17 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
+import Comments from '../Comments';
 import fonts from '../../theme/fonts';
 import colors from '../../theme/colors';
 import styles from './styles';
+import {IPost} from '../../types/models';
 
-const FeedPost = () => {
+interface IFeedPost {
+  post: IPost;
+}
+
+const FeedPost = ({post}: IFeedPost) => {
   return (
     <SafeAreaView style={styles.post}>
       <View style={styles.header}>
@@ -19,7 +25,7 @@ const FeedPost = () => {
           }}
           style={styles.userAvatar}
         />
-        <Text style={styles.userName}>sam mendes</Text>
+        <Text style={styles.userName}>{post.user.username}</Text>
         <Entypo
           name="dots-three-horizontal"
           size={16}
@@ -61,30 +67,21 @@ const FeedPost = () => {
         </View>
         <View>
           <Text style={styles.text}>
-            Liked by <Text style={styles.boldLikedText}>mendesmendes</Text> and{' '}
-            <Text style={styles.boldLikedText}>90 others</Text>
+            Liked by{' '}
+            <Text style={styles.boldLikedText}>{post.user.username}</Text> and{' '}
+            <Text style={styles.boldLikedText}>{post.nofLikes} others</Text>
           </Text>
           <Text style={styles.text}>
-            <Text style={styles.boldLikedText}>sammendes</Text> Lorem ipsum,
-            dolor sit amet consectetur adipisicing elit. Nihil nulla accusantium
-            quas quibusdam numquam fugit molestiae facilis mollitia dolores,
-            molestias quisquam non debitis eos quaerat temporibus quia impedit.
-            Accusamus, magni!
+            <Text style={styles.boldLikedText}>{post.user.username}</Text>{' '}
+            {post.description}
           </Text>
-          <Text style={styles.viewAllCommentsText}>View all 16 comments</Text>
-          <View style={styles.comments}>
-            <Text style={styles.commentsText}>
-              <Text style={styles.boldLikedText}>sammendes</Text> Lorem ipsum,
-              dolor sit amet consectetur adipisicing elit. Nihil nulla
-              accusantium quas quibusdam numquam.
-            </Text>
-            <AntDesign
-              name={'hearto'}
-              style={styles.icon}
-              color={colors.black}
-            />
-          </View>
-          <Text style={styles.viewAllCommentsText}>04 July 2023</Text>
+          <Text style={styles.viewAllCommentsText}>
+            View all {post.nofComments} comments
+          </Text>
+          {post.comments.map(comment => (
+            <Comments key={comment.id} comment={comment} />
+          ))}
+          <Text style={styles.viewAllCommentsText}>{post.createdAt}</Text>
         </View>
       </View>
     </SafeAreaView>
