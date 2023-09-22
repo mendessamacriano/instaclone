@@ -3,6 +3,10 @@ import {FlatList, ViewabilityConfig, ViewToken} from 'react-native';
 
 import FeedPost from '../../components/FeedPost/FeedPost';
 import posts from '../../assets/data/posts.json';
+import CommentsScreen from '../CommentsScreen/CommentsScreen';
+import ProfileScreen from '../ProfileScreen/ProfileScreen';
+import user from '../../assets/data/user.json';
+import EditProfileScreen from '../EditProfileScreen/EditProfileScreen';
 
 const HomeScreen = () => {
   const [activePostId, setActivePostId] = useState<string | null>(null);
@@ -20,15 +24,17 @@ const HomeScreen = () => {
   );
 
   return (
-    <FlatList
-      data={posts}
-      renderItem={({item}) => (
-        <FeedPost post={item} isVisible={activePostId === item.id} />
-      )}
-      showsVerticalScrollIndicator={false}
-      viewabilityConfig={viewabilityConfig}
-      onViewableItemsChanged={onViewabilityItemsChanged.current}
-    />
+    // <FlatList
+    //   data={posts}
+    //   renderItem={({item}) => (
+    //     <FeedPost post={item} isVisible={activePostId === item.id} />
+    //   )}
+    //   showsVerticalScrollIndicator={false}
+    //   viewabilityConfig={viewabilityConfig}
+    //   onViewableItemsChanged={onViewabilityItemsChanged.current}
+    // />
+    // <CommentsScreen />
+    <EditProfileScreen />
   );
 };
 
