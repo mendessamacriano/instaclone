@@ -1,18 +1,6 @@
-import {View, StyleSheet} from 'react-native';
-import HomeScreen from './src/screens/HomeScreen/HomeScreen';
-
+import AppNavigator from './src/navigation';
 const App = () => {
-  return (
-    <View style={styles.container}>
-      <HomeScreen />
-    </View>
-  );
+  return <AppNavigator />;
 };
 
 export default App;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});

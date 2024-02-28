@@ -11,7 +11,7 @@ interface IVideoPlayer {
 }
 
 const VideoPlayer = ({uri, paused}: IVideoPlayer) => {
-  const [muted, setMuted] = useState(false);
+  const [muted, setMuted] = useState(true);
 
   return (
     <View>
